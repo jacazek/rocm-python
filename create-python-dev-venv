@@ -1,0 +1,8 @@
+#!/bin/bash
+rocm-python -m venv .venv
+
+# create the python script to use from pycharm
+echo "#!/bin/bash" > .venv/bin/python-rocm
+echo "SCRIPT_DIR=\$( cd -- \"\$( dirname -- \"\${BASH_SOURCE[0]}\" )\" &> /dev/null && pwd )" >> .venv/bin/python-rocm
+echo "cd \$SCRIPT_DIR/../../; /usr/local/bin/rocm-python \$@" >> .venv/bin/python-rocm
+chmod a+x .venv/bin/python-rocm
