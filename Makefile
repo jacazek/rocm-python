@@ -1,7 +1,7 @@
-ROCM_VERSION=6.2
-ROCM_PATCH_VERSION=${ROCM_VERSION}.4
+ROCM_VERSION=6.3
+ROCM_PATCH_VERSION=${ROCM_VERSION}
 ROCM_DOCKER_IMAGE=rocm/dev-ubuntu-24.04:${ROCM_PATCH_VERSION}-complete
-ROCM_PYTORCH_INDEX_URL=https://download.pytorch.org/whl/nightly/rocm${ROCM_VERSION}
+ROCM_PYTORCH_INDEX_URL=https://download.pytorch.org/whl/nightly/rocm6.2
 INSTALL_LOCATION=/mnt/data4/usr/local/bin
 SIF_FILE_NAME=rocm${ROCM_PATCH_VERSION}_python.sif
 PYTHON_SHELL=${INSTALL_LOCATION}/rocm${ROCM_PATCH_VERSION}-python
