@@ -1,8 +1,8 @@
-ROCM_VERSION=6.1
-ROCM_PATCH_VERSION=${ROCM_VERSION}.1
-ROCM_DOCKER_IMAGE=rocm/dev-ubuntu-22.04:${ROCM_PATCH_VERSION}-complete
+ROCM_VERSION=6.2
+ROCM_PATCH_VERSION=${ROCM_VERSION}.4
+ROCM_DOCKER_IMAGE=rocm/dev-ubuntu-24.04:${ROCM_PATCH_VERSION}-complete
 ROCM_PYTORCH_INDEX_URL=https://download.pytorch.org/whl/nightly/rocm${ROCM_VERSION}
-INSTALL_LOCATION=/usr/local/bin
+INSTALL_LOCATION=/mnt/data4/usr/local/bin
 SIF_FILE_NAME=rocm${ROCM_PATCH_VERSION}_python.sif
 PYTHON_SHELL=${INSTALL_LOCATION}/rocm${ROCM_PATCH_VERSION}-python
 INSTALLED_SIF=${INSTALL_LOCATION}/${SIF_FILE_NAME}
@@ -19,7 +19,7 @@ build: prepare apptainer_build
 # 	docker build --build-arg ROCM_DOCKER_IMAGE=${ROCM_DOCKER_IMAGE} -t jacazek/rocm${ROCM_VERSION}_python .
 
 apptainer_build: rocm_python.def
-	apptainer build --build-arg ROCM_DOCKER_IMAGE=${ROCM_DOCKER_IMAGE} --build-arg ROCM_PYTORCH_INDEX_URL=${ROCM_PYTORCH_INDEX_URL} ${BIN_DIRECTORY}/${SIF_FILE_NAME} rocm_python.def
+	apptainer build --build-arg ROCM_DOCKER_IMAGE=${ROCM_DOCKER_IMAGE} ${BIN_DIRECTORY}/${SIF_FILE_NAME} rocm_python.def
 
 clean:
 	rm -f ${BIN_DIRECTORY}/${SIF_FILE_NAME}
@@ -42,3 +42,6 @@ uninstall:
 	rm -f ${INSTALL_LOCATION}/rocm-python
 	rm -f ${INSTALLED_SIF}
 	rm -f ${PYTHON_SHELL}
+
+
+
